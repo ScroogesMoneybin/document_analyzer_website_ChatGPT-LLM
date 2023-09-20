@@ -3,6 +3,10 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 import os
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 #FUNCTIONS
 # function to load local files
 # return list of langchain documents. one document per page.  This function works with pdf's or Word documents. Use an elif clause for each file extension format you want to support
