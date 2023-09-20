@@ -65,7 +65,8 @@ def calculate_embedding_cost(texts):
 
 def clear_history():
     #if history key in session state exists, delete it to clear history in text box.
-    del st.session_state['history']
+    if 'history' in st.session_state:
+        del st.session_state['history']
 
 if __name__ == "__main__":
     import os
@@ -118,7 +119,7 @@ if __name__ == "__main__":
 
             st.divider()
 
-            #create history key
+            # create history key
             if 'history' not in st.session_state:
                 st.session_state.history = ''
             #concatenate current question with its answer
