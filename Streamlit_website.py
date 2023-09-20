@@ -48,7 +48,7 @@ def q_and_a(vector_store, q, k=3):
     from langchain.chains import RetrievalQA
     from langchain.chat_models import ChatOpenAI
     llm = ChatOpenAI(model='gpt-3.5-turbo',temperature=1)
-    retriever = vector_store.as_retriever(search_type='similarity', search_kwargs={'k':k})
+    retriever = vector_store.as_retriever(search_type='similarity', search_kwargs={'k': k})
     #k is the number of similar chunks retrieved. higher k costs more in chatgpt but gives better answer
     chain=RetrievalQA.from_chain_type(llm=llm, chain_type='stuff', retriever=retriever)
     answer = chain.run(q)
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     with st.sidebar:
         api_key = st.text_input('Input Your OpenAI API Key:', type='password')
         if api_key:
-            os.environ['OPEN_AI_API_KEY']=api_key
+            os.environ['OPENAI_API_KEY']=api_key
 
         uploaded_file = st.file_uploader('Upload Your PDF, TXT, or DOCX File For Processing:', type=['pdf', 'docx', 'txt'])
         chunk_size = st.number_input('Chunk Size (between 100 and 2048):', min_value=100, max_value=2048, value=512)
