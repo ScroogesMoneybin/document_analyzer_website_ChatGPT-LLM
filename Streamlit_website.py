@@ -55,7 +55,7 @@ def create_embeddings(chunks):
 def q_and_a(vector_store, q, k=3):
     from langchain.chains import RetrievalQA
     
-    llm = ChatOpenAI(model='gpt-3.5-turbo',temperature=1)
+    llm = ChatOpenAI(model='gpt-4o-mini',temperature=1)
     retriever = vector_store.as_retriever(search_type='similarity', search_kwargs={'k': k})
     #k is the number of similar chunks retrieved. higher k costs more in chatgpt but gives better answer
     chain=RetrievalQA.from_chain_type(llm=llm, chain_type='stuff', retriever=retriever)
